@@ -31,6 +31,6 @@
 	</actions>
 
 	<extensions defaultExtensionNs="com.intellij">
-		<!-- Add your extensions here -->
+		<fileTypeFactory implementation="com.github.intellij6502.file.Asm6502FileTypeFactory" />
 	</extensions>
 </idea-plugin>
