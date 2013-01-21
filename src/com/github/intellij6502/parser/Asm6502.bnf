@@ -16,7 +16,17 @@
 
 asm6502File ::= item_*
 
-private item_ ::= (label_declaration|number|COMMENT|CRLF)
+private item_ ::= (label_declaration|number|address|COMMENT|CRLF)
 
+// labels
 label_declaration ::= (LABEL)
-number ::= (HEX_VALUE|DEC_VALUE|BIN_VALUE)
+
+// numbers
+number ::= (HEXADECIMAL_VALUE|DECIMAL_VALUE|BINARY_VALUE)
+
+// TODO: Define addresses
+address ::= (ADDRESS_VALUE)
+
+// TODO: Define directives
+
+// TODO: Define mnemonics

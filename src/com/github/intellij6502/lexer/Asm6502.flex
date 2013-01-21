@@ -22,17 +22,23 @@ CRLF= \n|\r|\r\n
 WHITESPACE=[\ \t\f]
 LABEL=[a-zA-Z]+:
 EOL_COMMENT=;[^\r\n]*
-HEX_VALUE="#$"([0-9]|[a-f]|[A-F])+
-BIN_VALUE="#%"[0-1]+
-DEC_VALUE="#"[0-9]+
+
+HEXADECIMAL_VALUE="#$"([0-9]|[a-f]|[A-F])+
+DECIMAL_VALUE="#"[0-9]+
+BINARY_VALUE="#%"[0-1]+
+
+ADDRESS_VALUE="$"([0-9]|[a-f]|[A-F])+
 
 %%
 
 <YYINITIAL> {EOL_COMMENT}								{ yybegin(YYINITIAL); return Asm6502Type.COMMENT; }
 <YYINITIAL> {LABEL}										{ yybegin(YYINITIAL); return Asm6502Type.LABEL; }
-<YYINITIAL> {HEX_VALUE}									{ yybegin(YYINITIAL); return Asm6502Type.HEX_VALUE; }
-<YYINITIAL> {BIN_VALUE}									{ yybegin(YYINITIAL); return Asm6502Type.BIN_VALUE; }
-<YYINITIAL> {DEC_VALUE}									{ yybegin(YYINITIAL); return Asm6502Type.DEC_VALUE; }
+
+<YYINITIAL> {HEXADECIMAL_VALUE}							{ yybegin(YYINITIAL); return Asm6502Type.HEXADECIMAL_VALUE; }
+<YYINITIAL> {DECIMAL_VALUE}								{ yybegin(YYINITIAL); return Asm6502Type.DECIMAL_VALUE; }
+<YYINITIAL> {BINARY_VALUE}								{ yybegin(YYINITIAL); return Asm6502Type.BINARY_VALUE; }
+
+<YYINITIAL> {ADDRESS_VALUE}								{yybegin(YYINITIAL); return Asm6502Type.ADDRESS_VALUE; }
 
 <WAITING_VALUE> {CRLF}									{ yybegin(YYINITIAL); return Asm6502Type.CRLF; }
 <WAITING_VALUE> {WHITESPACE}+							{ yybegin(WAITING_VALUE); return TokenType.WHITE_SPACE; }
