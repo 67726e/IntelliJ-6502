@@ -16,6 +16,7 @@
 
 asm6502File ::= item_*
 
-private item_ ::= (label_declaration|COMMENT|CRLF)
+private item_ ::= (label_declaration|number|COMMENT|CRLF)
 
-label_declaration ::= (LABEL EOL_COMMENT?)
+label_declaration ::= (LABEL)
+number ::= (HEX_VALUE|DEC_VALUE|BIN_VALUE)
