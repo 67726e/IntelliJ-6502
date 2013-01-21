@@ -1,0 +1,21 @@
+{
+	parserClass="com.github.intellij6502.parser.Asm6502Parser"
+	stubParserClass="com.github.intellij6502.parser.GeneratedParserUtilBase"
+
+	extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+
+	psiClassPrefix="Asm6502"
+	psiImplClassSuffix="Impl"
+	psiPackage="com.github.intellij6502.psi"
+	psiImplPackage="com.github.intellij6502.psi.impl"
+
+	elementTypeHolderClass="com.github.intellij6502.psi.Asm6502Type"
+	elementTypeClass="com.github.intellij6502.psi.Asm6502ElementType"
+	tokenTypeClass="com.github.intellij6502.psi.Asm6502TokenType"
+}
+
+asm6502File ::= item_*
+
+private item_ ::= (label_declaration|COMMENT|CRLF)
+
+label_declaration ::= (LABEL EOL_COMMENT?)

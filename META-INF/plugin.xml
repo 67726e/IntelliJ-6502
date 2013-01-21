@@ -32,5 +32,7 @@
 
 	<extensions defaultExtensionNs="com.intellij">
 		<fileTypeFactory implementation="com.github.intellij6502.file.Asm6502FileTypeFactory" />
+		<lang.parserDefinition language="6502"
+							   implementationClass="com.github.intellij6502.parser.Asm6502ParserDefinition" />
 	</extensions>
 </idea-plugin>
