@@ -1,5 +1,7 @@
 package com.github.intellij6502.file;
 
+import com.intellij.openapi.util.IconLoader;
+
 import javax.swing.*;
 
 /**
@@ -7,8 +9,10 @@ import javax.swing.*;
  */
 
 public class Asm6502Icon {
+	private static final Icon FILE_ICON = IconLoader.getIcon("/com/github/intellij6502/icon/icon.png");
+
 	public static Icon getFileIcon() {
-		// TODO: Setup icon for 6502 assembly
-		return null;
+		// TODO: Refactor icon location to sit in /resource/image/ folder
+		return FILE_ICON;
 	}
 }
