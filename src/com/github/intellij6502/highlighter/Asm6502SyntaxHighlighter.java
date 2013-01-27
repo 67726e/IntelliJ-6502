@@ -15,23 +15,31 @@ import org.jetbrains.annotations.NotNull;
 import java.awt.*;
 import java.io.Reader;
 
+import static com.intellij.openapi.editor.colors.TextAttributesKey.*;
+
 /**
  * User: 67726e
  */
 
 public class Asm6502SyntaxHighlighter extends SyntaxHighlighterBase {
-	public static final TextAttributesKey COMMENT = TextAttributesKey.createTextAttributesKey("6502_COMMENT",
+	public static final TextAttributesKey COMMENT = createTextAttributesKey("6502_COMMENT",
 			SyntaxHighlighterColors.LINE_COMMENT);
-	public static final TextAttributesKey NUMBER = TextAttributesKey.createTextAttributesKey("6502_NUMBER",
+	public static final TextAttributesKey NUMBER = createTextAttributesKey("6502_NUMBER",
 			SyntaxHighlighterColors.NUMBER);
-	public static final TextAttributesKey LABEL = TextAttributesKey.createTextAttributesKey("6502_LABEL",
+	public static final TextAttributesKey LABEL = createTextAttributesKey("6502_LABEL",
 			new TextAttributes(Color.WHITE, null, null, null, Font.PLAIN));
-	public static final TextAttributesKey BAD_CHARACTER = TextAttributesKey.createTextAttributesKey("6502_BAD",
+	public static final TextAttributesKey MNEMONIC = createTextAttributesKey("6502_MNEMONIC",
+			SyntaxHighlighterColors.KEYWORD);
+	public static final TextAttributesKey DIRECTIVE = createTextAttributesKey("6502_DIRECTIVE",
+			new TextAttributes(Color.CYAN, null, null, null, Font.PLAIN));
+	public static final TextAttributesKey BAD_CHARACTER = createTextAttributesKey("6502_BAD",
 			new TextAttributes(Color.RED, null, null, null, Font.BOLD));
 
 	private static final TextAttributesKey[] COMMENT_KEYS = new TextAttributesKey[] {COMMENT};
 	private static final TextAttributesKey[] NUMBER_KEYS = new TextAttributesKey[] {NUMBER};
 	private static final TextAttributesKey[] LABEL_KEYS = new TextAttributesKey[] {LABEL};
+	private static final TextAttributesKey[] MNEMONIC_KEYS = new TextAttributesKey[] {MNEMONIC};
+	private static final TextAttributesKey[] DIRECTIVE_KEYS = new TextAttributesKey[] {DIRECTIVE};
 	private static final TextAttributesKey[] BAD_CHARACTER_KEYS = new TextAttributesKey[] {BAD_CHARACTER};
 	private static final TextAttributesKey[] EMPTY_KEYS = new TextAttributesKey[0];
 
@@ -51,6 +59,10 @@ public class Asm6502SyntaxHighlighter extends SyntaxHighlighterBase {
 			return NUMBER_KEYS;
 		} else if (Asm6502Type.LABEL.equals(iElementType)) {
 			return LABEL_KEYS;
+		} else if (Asm6502Type.MNEMONIC.equals(iElementType)) {
+			return MNEMONIC_KEYS;
+		} else if (Asm6502Type.DIRECTIVE.equals(iElementType)) {
+			return DIRECTIVE_KEYS;
 		} else if (TokenType.BAD_CHARACTER.equals(iElementType)) {
 			return BAD_CHARACTER_KEYS;
 		} else {
