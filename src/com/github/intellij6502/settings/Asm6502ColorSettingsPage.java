@@ -25,7 +25,8 @@ public class Asm6502ColorSettingsPage implements ColorSettingsPage {
 		new AttributesDescriptor("Directive", Asm6502SyntaxHighlighter.DIRECTIVE),
 		new AttributesDescriptor("Label", Asm6502SyntaxHighlighter.LABEL),
 		new AttributesDescriptor("Mnemonic", Asm6502SyntaxHighlighter.MNEMONIC),
-		new AttributesDescriptor("Number", Asm6502SyntaxHighlighter.NUMBER)
+		new AttributesDescriptor("Number", Asm6502SyntaxHighlighter.NUMBER),
+		new AttributesDescriptor("String", Asm6502SyntaxHighlighter.DIRECTIVE_STRING)
 	};
 
 	@Nullable
@@ -43,7 +44,8 @@ public class Asm6502ColorSettingsPage implements ColorSettingsPage {
 	@NotNull
 	@Override
 	public String getDemoText() {
-		return  "	.inesprg 1 ; 1x 16KB PRG\n" +
+		return  "	.include \"somefile.asm\" ; Include another source file" +
+				"	.inesprg 1 ; 1x 16KB PRG\n" +
 				"	.ineschr 1 ; 1x 8KB CHR\n" +
 				"	.inesmap 0 ; NROM\n" +
 				"	.inesmir 1 ; Background mirroring\n" +
