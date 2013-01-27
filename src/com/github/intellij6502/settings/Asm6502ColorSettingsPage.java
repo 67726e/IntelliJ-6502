@@ -20,11 +20,12 @@ import java.util.Map;
 
 public class Asm6502ColorSettingsPage implements ColorSettingsPage {
 	private static final AttributesDescriptor[] DESCRIPTORS = new AttributesDescriptor[] {
+		new AttributesDescriptor("Address", Asm6502SyntaxHighlighter.ADDRESS),
 		new AttributesDescriptor("Comment", Asm6502SyntaxHighlighter.COMMENT),
-		new AttributesDescriptor("Number", Asm6502SyntaxHighlighter.NUMBER),
-		new AttributesDescriptor("Label", Asm6502SyntaxHighlighter.LABEL),
 		new AttributesDescriptor("Directive", Asm6502SyntaxHighlighter.DIRECTIVE),
-		new AttributesDescriptor("Mnemonic", Asm6502SyntaxHighlighter.MNEMONIC)
+		new AttributesDescriptor("Label", Asm6502SyntaxHighlighter.LABEL),
+		new AttributesDescriptor("Mnemonic", Asm6502SyntaxHighlighter.MNEMONIC),
+		new AttributesDescriptor("Number", Asm6502SyntaxHighlighter.NUMBER)
 	};
 
 	@Nullable
