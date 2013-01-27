@@ -36,6 +36,10 @@ public class Asm6502SyntaxHighlighter extends SyntaxHighlighterBase {
 			new TextAttributes(Color.CYAN, null, null, null, Font.PLAIN));
 	public static final TextAttributesKey BAD_CHARACTER = createTextAttributesKey("6502_BAD",
 			new TextAttributes(Color.RED, null, null, null, Font.BOLD));
+	public static final TextAttributesKey DIRECTIVE_STRING = createTextAttributesKey("6502_DIRECTIVE_STRING",
+			SyntaxHighlighterColors.STRING);
+	public static final TextAttributesKey DIRECTIVE_NUMBER = createTextAttributesKey("6502_DIRECTIVE_NUMBER",
+			SyntaxHighlighterColors.NUMBER);
 
 	private static final TextAttributesKey[] COMMENT_KEYS = new TextAttributesKey[] {COMMENT};
 	private static final TextAttributesKey[] NUMBER_KEYS = new TextAttributesKey[] {NUMBER};
@@ -45,6 +49,8 @@ public class Asm6502SyntaxHighlighter extends SyntaxHighlighterBase {
 	private static final TextAttributesKey[] DIRECTIVE_KEYS = new TextAttributesKey[] {DIRECTIVE};
 	private static final TextAttributesKey[] BAD_CHARACTER_KEYS = new TextAttributesKey[] {BAD_CHARACTER};
 	private static final TextAttributesKey[] EMPTY_KEYS = new TextAttributesKey[0];
+	private static final TextAttributesKey[] DIRECTIVE_STRING_KEYS = new TextAttributesKey[] {DIRECTIVE_STRING};
+	private static final TextAttributesKey[] DIRECTIVE_NUMBER_KEYS = new TextAttributesKey[] {DIRECTIVE_NUMBER};
 
 	@NotNull
 	@Override
@@ -68,6 +74,10 @@ public class Asm6502SyntaxHighlighter extends SyntaxHighlighterBase {
 			return MNEMONIC_KEYS;
 		} else if (Asm6502Type.DIRECTIVE.equals(iElementType)) {
 			return DIRECTIVE_KEYS;
+		} else if (Asm6502Type.DIRECTIVE_STRING.equals(iElementType)) {
+			return DIRECTIVE_STRING_KEYS;
+		} else if (Asm6502Type.DIRECTIVE_NUMBER.equals(iElementType)) {
+			return DIRECTIVE_NUMBER_KEYS;
 		} else if (TokenType.BAD_CHARACTER.equals(iElementType)) {
 			return BAD_CHARACTER_KEYS;
 		} else {
