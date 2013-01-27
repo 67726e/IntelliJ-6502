@@ -36,5 +36,6 @@
 			implementationClass="com.github.intellij6502.parser.Asm6502ParserDefinition" />
 		<lang.syntaxHighlighterFactory key="6502"
 			implementationClass="com.github.intellij6502.highlighter.Asm6502SyntaxHighlighterFactory" />
+		<colorSettingsPage implementation="com.github.intellij6502.settings.Asm6502ColorSettingsPage" />
 	</extensions>
 </idea-plugin>
