@@ -16,7 +16,7 @@
 
 asm6502File ::= item_*
 
-private item_ ::= (label_declaration|number|ADDRESS|DIRECTIVE|MNEMONIC|COMMENT|CRLF)
+private item_ ::= (label_declaration|number|directive_command|ADDRESS|MNEMONIC|COMMENT|CRLF)
 
 // labels
 label_declaration ::= (LABEL)
@@ -24,3 +24,6 @@ label_declaration ::= (LABEL)
 // numbers
 number ::= (HEXADECIMAL_VALUE|DECIMAL_VALUE|BINARY_VALUE)
 
+// directive command
+directive_command ::= (DIRECTIVE directive_argument)
+directive_argument ::= (DIRECTIVE_NUMBER | DIRECTIVE_STRING)

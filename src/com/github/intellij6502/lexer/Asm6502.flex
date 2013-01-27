@@ -16,7 +16,7 @@ import com.intellij.psi.TokenType;
 %eof{  return;
 %eof}
 
-%state WAITING_VALUE
+%state STRING
 
 CRLF= \n|\r|\r\n
 WHITESPACE=[\ \t\f]
@@ -30,26 +30,29 @@ BINARY_VALUE="#%"[0-1]+
 ADDRESS="$"([0-9]|[a-f]|[A-F])+
 
 DIRECTIVE="."[a-z]+
+DIRECTIVE_NUMBER=[0-9]+
+DIRECTIVE_STRING=\".+\"
 
 MNEMONIC=([A-Z]|[a-z]){3}
+
+%state DIRECTIVE
 
 %%
 
 <YYINITIAL> {EOL_COMMENT}								{ yybegin(YYINITIAL); return Asm6502Type.COMMENT; }
 <YYINITIAL> {LABEL}										{ yybegin(YYINITIAL); return Asm6502Type.LABEL; }
-
 <YYINITIAL> {HEXADECIMAL_VALUE}							{ yybegin(YYINITIAL); return Asm6502Type.HEXADECIMAL_VALUE; }
 <YYINITIAL> {DECIMAL_VALUE}								{ yybegin(YYINITIAL); return Asm6502Type.DECIMAL_VALUE; }
 <YYINITIAL> {BINARY_VALUE}								{ yybegin(YYINITIAL); return Asm6502Type.BINARY_VALUE; }
-
 <YYINITIAL> {ADDRESS}									{ yybegin(YYINITIAL); return Asm6502Type.ADDRESS; }
-
-<YYINITIAL> {DIRECTIVE}									{ yybegin(YYINITIAL); return Asm6502Type.DIRECTIVE; }
-
+<YYINITIAL> {DIRECTIVE}									{ yybegin(DIRECTIVE); return Asm6502Type.DIRECTIVE; }
 <YYINITIAL> {MNEMONIC}									{ yybegin(YYINITIAL); return Asm6502Type.MNEMONIC; }
 
-<WAITING_VALUE> {CRLF}									{ yybegin(YYINITIAL); return Asm6502Type.CRLF; }
-<WAITING_VALUE> {WHITESPACE}+							{ yybegin(WAITING_VALUE); return TokenType.WHITE_SPACE; }
+<DIRECTIVE> {
+	{WHITESPACE}+										{ yybegin(DIRECTIVE); return TokenType.WHITE_SPACE; }
+	{DIRECTIVE_NUMBER}									{ yybegin(YYINITIAL); return Asm6502Type.DIRECTIVE_NUMBER; }
+	{DIRECTIVE_STRING}									{ yybegin(YYINITIAL); return Asm6502Type.DIRECTIVE_STRING; }
+}
 
 {CRLF}													{ yybegin(YYINITIAL); return Asm6502Type.CRLF; }
 {WHITESPACE}+											{ yybegin(YYINITIAL); return TokenType.WHITE_SPACE; }
