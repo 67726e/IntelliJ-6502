@@ -27,7 +27,7 @@ HEXADECIMAL_VALUE="#$"([0-9]|[a-f]|[A-F])+
 DECIMAL_VALUE="#"[0-9]+
 BINARY_VALUE="#%"[0-1]+
 
-ADDRESS_VALUE="$"([0-9]|[a-f]|[A-F])+
+ADDRESS="$"([0-9]|[a-f]|[A-F])+
 
 DIRECTIVE="."[a-z]+
 
@@ -42,7 +42,7 @@ MNEMONIC=([A-Z]|[a-z]){3}
 <YYINITIAL> {DECIMAL_VALUE}								{ yybegin(YYINITIAL); return Asm6502Type.DECIMAL_VALUE; }
 <YYINITIAL> {BINARY_VALUE}								{ yybegin(YYINITIAL); return Asm6502Type.BINARY_VALUE; }
 
-<YYINITIAL> {ADDRESS_VALUE}								{yybegin(YYINITIAL); return Asm6502Type.ADDRESS_VALUE; }
+<YYINITIAL> {ADDRESS}									{ yybegin(YYINITIAL); return Asm6502Type.ADDRESS; }
 
 <YYINITIAL> {DIRECTIVE}									{ yybegin(YYINITIAL); return Asm6502Type.DIRECTIVE; }
 
