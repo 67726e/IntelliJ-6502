@@ -26,6 +26,8 @@ public class Asm6502SyntaxHighlighter extends SyntaxHighlighterBase {
 			SyntaxHighlighterColors.LINE_COMMENT);
 	public static final TextAttributesKey NUMBER = createTextAttributesKey("6502_NUMBER",
 			SyntaxHighlighterColors.NUMBER);
+	public static final TextAttributesKey ADDRESS = createTextAttributesKey("6502_ADDRESS",
+			SyntaxHighlighterColors.NUMBER);
 	public static final TextAttributesKey LABEL = createTextAttributesKey("6502_LABEL",
 			new TextAttributes(Color.WHITE, null, null, null, Font.PLAIN));
 	public static final TextAttributesKey MNEMONIC = createTextAttributesKey("6502_MNEMONIC",
@@ -37,6 +39,7 @@ public class Asm6502SyntaxHighlighter extends SyntaxHighlighterBase {
 
 	private static final TextAttributesKey[] COMMENT_KEYS = new TextAttributesKey[] {COMMENT};
 	private static final TextAttributesKey[] NUMBER_KEYS = new TextAttributesKey[] {NUMBER};
+	private static final TextAttributesKey[] ADDRESS_KEYS = new TextAttributesKey[] {ADDRESS};
 	private static final TextAttributesKey[] LABEL_KEYS = new TextAttributesKey[] {LABEL};
 	private static final TextAttributesKey[] MNEMONIC_KEYS = new TextAttributesKey[] {MNEMONIC};
 	private static final TextAttributesKey[] DIRECTIVE_KEYS = new TextAttributesKey[] {DIRECTIVE};
@@ -57,6 +60,8 @@ public class Asm6502SyntaxHighlighter extends SyntaxHighlighterBase {
 		} else if (Asm6502Type.HEXADECIMAL_VALUE.equals(iElementType) ||
 				Asm6502Type.DECIMAL_VALUE.equals(iElementType) || Asm6502Type.BINARY_VALUE.equals(iElementType)) {
 			return NUMBER_KEYS;
+		} else if (Asm6502Type.ADDRESS.equals(iElementType)) {
+			return ADDRESS_KEYS;
 		} else if (Asm6502Type.LABEL.equals(iElementType)) {
 			return LABEL_KEYS;
 		} else if (Asm6502Type.MNEMONIC.equals(iElementType)) {
