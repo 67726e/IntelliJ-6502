@@ -42,7 +42,7 @@ public class Asm6502SyntaxHighlighter extends SyntaxHighlighterBase {
 			SyntaxHighlighterColors.NUMBER);
 
 	private static final TextAttributesKey[] COMMENT_KEYS = new TextAttributesKey[] {COMMENT};
-	private static final TextAttributesKey[] NUMBER_KEYS = new TextAttributesKey[] {NUMBER};
+	private static final TextAttributesKey[] NUMBER_KEYS = new TextAttributesKey[] {NUMBER, DIRECTIVE_NUMBER};
 	private static final TextAttributesKey[] ADDRESS_KEYS = new TextAttributesKey[] {ADDRESS};
 	private static final TextAttributesKey[] LABEL_KEYS = new TextAttributesKey[] {LABEL};
 	private static final TextAttributesKey[] MNEMONIC_KEYS = new TextAttributesKey[] {MNEMONIC};
@@ -50,7 +50,6 @@ public class Asm6502SyntaxHighlighter extends SyntaxHighlighterBase {
 	private static final TextAttributesKey[] BAD_CHARACTER_KEYS = new TextAttributesKey[] {BAD_CHARACTER};
 	private static final TextAttributesKey[] EMPTY_KEYS = new TextAttributesKey[0];
 	private static final TextAttributesKey[] DIRECTIVE_STRING_KEYS = new TextAttributesKey[] {DIRECTIVE_STRING};
-	private static final TextAttributesKey[] DIRECTIVE_NUMBER_KEYS = new TextAttributesKey[] {DIRECTIVE_NUMBER};
 
 	@NotNull
 	@Override
@@ -64,7 +63,8 @@ public class Asm6502SyntaxHighlighter extends SyntaxHighlighterBase {
 		if (Asm6502Type.COMMENT.equals(iElementType)) {
 			return COMMENT_KEYS;
 		} else if (Asm6502Type.HEXADECIMAL_VALUE.equals(iElementType) ||
-				Asm6502Type.DECIMAL_VALUE.equals(iElementType) || Asm6502Type.BINARY_VALUE.equals(iElementType)) {
+				Asm6502Type.DECIMAL_VALUE.equals(iElementType) || Asm6502Type.BINARY_VALUE.equals(iElementType) ||
+				Asm6502Type.DIRECTIVE_NUMBER.equals(iElementType)) {
 			return NUMBER_KEYS;
 		} else if (Asm6502Type.ADDRESS.equals(iElementType)) {
 			return ADDRESS_KEYS;
@@ -76,8 +76,6 @@ public class Asm6502SyntaxHighlighter extends SyntaxHighlighterBase {
 			return DIRECTIVE_KEYS;
 		} else if (Asm6502Type.DIRECTIVE_STRING.equals(iElementType)) {
 			return DIRECTIVE_STRING_KEYS;
-		} else if (Asm6502Type.DIRECTIVE_NUMBER.equals(iElementType)) {
-			return DIRECTIVE_NUMBER_KEYS;
 		} else if (TokenType.BAD_CHARACTER.equals(iElementType)) {
 			return BAD_CHARACTER_KEYS;
 		} else {
