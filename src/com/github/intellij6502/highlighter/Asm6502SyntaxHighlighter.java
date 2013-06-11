@@ -10,6 +10,7 @@ import com.intellij.openapi.editor.markup.TextAttributes;
 import com.intellij.openapi.fileTypes.SyntaxHighlighterBase;
 import com.intellij.psi.TokenType;
 import com.intellij.psi.tree.IElementType;
+import com.intellij.ui.JBColor;
 import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
@@ -29,13 +30,13 @@ public class Asm6502SyntaxHighlighter extends SyntaxHighlighterBase {
 	public static final TextAttributesKey ADDRESS = createTextAttributesKey("6502_ADDRESS",
 			SyntaxHighlighterColors.NUMBER);
 	public static final TextAttributesKey LABEL = createTextAttributesKey("6502_LABEL",
-			new TextAttributes(Color.WHITE, null, null, null, Font.PLAIN));
+			new TextAttributes(JBColor.WHITE, null, null, null, Font.PLAIN));
 	public static final TextAttributesKey MNEMONIC = createTextAttributesKey("6502_MNEMONIC",
 			SyntaxHighlighterColors.KEYWORD);
 	public static final TextAttributesKey DIRECTIVE = createTextAttributesKey("6502_DIRECTIVE",
-			new TextAttributes(Color.CYAN, null, null, null, Font.PLAIN));
+			new TextAttributes(JBColor.CYAN, null, null, null, Font.PLAIN));
 	public static final TextAttributesKey BAD_CHARACTER = createTextAttributesKey("6502_BAD",
-			new TextAttributes(Color.RED, null, null, null, Font.BOLD));
+			new TextAttributes(JBColor.RED, null, null, null, Font.BOLD));
 	public static final TextAttributesKey DIRECTIVE_STRING = createTextAttributesKey("6502_DIRECTIVE_STRING",
 			SyntaxHighlighterColors.STRING);
 	public static final TextAttributesKey DIRECTIVE_NUMBER = createTextAttributesKey("6502_DIRECTIVE_NUMBER",

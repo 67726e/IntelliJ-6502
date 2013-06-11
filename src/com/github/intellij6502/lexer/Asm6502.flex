@@ -39,21 +39,21 @@ MNEMONIC=([A-Z]|[a-z]){3}
 
 %%
 
-<YYINITIAL> {EOL_COMMENT}								{ yybegin(YYINITIAL); return Asm6502Type.COMMENT; }
-<YYINITIAL> {LABEL}										{ yybegin(YYINITIAL); return Asm6502Type.LABEL; }
-<YYINITIAL> {HEXADECIMAL_VALUE}							{ yybegin(YYINITIAL); return Asm6502Type.HEXADECIMAL_VALUE; }
-<YYINITIAL> {DECIMAL_VALUE}								{ yybegin(YYINITIAL); return Asm6502Type.DECIMAL_VALUE; }
-<YYINITIAL> {BINARY_VALUE}								{ yybegin(YYINITIAL); return Asm6502Type.BINARY_VALUE; }
-<YYINITIAL> {ADDRESS}									{ yybegin(YYINITIAL); return Asm6502Type.ADDRESS; }
+<YYINITIAL> {EOL_COMMENT}								{ return Asm6502Type.COMMENT; }
+<YYINITIAL> {LABEL}										{ return Asm6502Type.LABEL; }
+<YYINITIAL> {HEXADECIMAL_VALUE}							{ return Asm6502Type.HEXADECIMAL_VALUE; }
+<YYINITIAL> {DECIMAL_VALUE}								{ return Asm6502Type.DECIMAL_VALUE; }
+<YYINITIAL> {BINARY_VALUE}								{ return Asm6502Type.BINARY_VALUE; }
+<YYINITIAL> {ADDRESS}									{ return Asm6502Type.ADDRESS; }
 <YYINITIAL> {DIRECTIVE}									{ yybegin(DIRECTIVE); return Asm6502Type.DIRECTIVE; }
-<YYINITIAL> {MNEMONIC}									{ yybegin(YYINITIAL); return Asm6502Type.MNEMONIC; }
+<YYINITIAL> {MNEMONIC}									{ return Asm6502Type.MNEMONIC; }
 
 <DIRECTIVE> {
-	{WHITESPACE}+										{ yybegin(DIRECTIVE); return TokenType.WHITE_SPACE; }
+	{WHITESPACE}+										{ return TokenType.WHITE_SPACE; }
 	{DIRECTIVE_NUMBER}									{ yybegin(YYINITIAL); return Asm6502Type.DIRECTIVE_NUMBER; }
 	{DIRECTIVE_STRING}									{ yybegin(YYINITIAL); return Asm6502Type.DIRECTIVE_STRING; }
 }
 
-{CRLF}													{ yybegin(YYINITIAL); return Asm6502Type.CRLF; }
-{WHITESPACE}+											{ yybegin(YYINITIAL); return TokenType.WHITE_SPACE; }
+{CRLF}													{ return Asm6502Type.CRLF; }
+{WHITESPACE}+											{ return TokenType.WHITE_SPACE; }
 .														{ return TokenType.BAD_CHARACTER; }
