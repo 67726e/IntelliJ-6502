@@ -37,5 +37,6 @@
 		<lang.syntaxHighlighterFactory key="6502"
 			implementationClass="com.github.intellij6502.highlighter.Asm6502SyntaxHighlighterFactory" />
 		<colorSettingsPage implementation="com.github.intellij6502.settings.Asm6502ColorSettingsPage" />
+		<lang.commenter language="6502" implementationClass="com.github.intellij6502.Asm6502Commenter" />
 	</extensions>
 </idea-plugin>
