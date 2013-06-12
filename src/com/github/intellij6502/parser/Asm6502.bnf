@@ -15,7 +15,7 @@
 }
 
 asm6502File ::= item_*
-private item_ ::= (LABEL|directive_command|mnemonic_command|COMMENT|CRLF)
+private item_ ::= (LABEL_DECLARATION|directive_command|mnemonic_command|COMMENT|CRLF)
 
 // directive command
 directive_command ::= DIRECTIVE directive_argument
@@ -24,7 +24,7 @@ directive_argument ::= (DIRECTIVE_NUMBER | DIRECTIVE_STRING)
 
 // mnemonic command
 mnemonic_command ::= (MNEMONIC mnemonic_argument)
-mnemonic_argument ::= (number | ADDRESS | indirect)
+mnemonic_argument ::= (number | ADDRESS | indirect | LABEL_ARGUMENT)
 
 // indirect
 indirect ::= (OPEN_PARENTHESIS ADDRESS CLOSE_PARENTHESIS)

@@ -20,8 +20,8 @@ import com.intellij.psi.TokenType;
 
 CRLF= \n|\r|\r\n
 WHITESPACE=[\ \t\f]
-LABEL=[a-zA-Z]+:
-LABEL_ARGUMENT=[a-zA-Z]
+LABEL_DECLARATION=[a-zA-Z]+:
+LABEL_ARGUMENT=[a-zA-Z]+
 EOL_COMMENT=;[^\r\n]*
 
 HEXADECIMAL_VALUE="#$"([0-9]|[a-f]|[A-F])+
@@ -47,7 +47,7 @@ CLOSE_PARENTHESIS=")"
 %%
 
 <YYINITIAL> {EOL_COMMENT}								{ return Asm6502Type.COMMENT; }
-<YYINITIAL> {LABEL}										{ return Asm6502Type.LABEL; }
+<YYINITIAL> {LABEL_DECLARATION}							{ return Asm6502Type.LABEL_DECLARATION; }
 <YYINITIAL> {DIRECTIVE}									{ yybegin(DIRECTIVE); return Asm6502Type.DIRECTIVE; }
 <YYINITIAL> {MNEMONIC}									{ yybegin(MNEMONIC); return Asm6502Type.MNEMONIC; }
 

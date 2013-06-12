@@ -72,7 +72,7 @@ public class Asm6502SyntaxHighlighter extends SyntaxHighlighterBase {
 			return NUMBER_KEYS;
 		} else if (Asm6502Type.ADDRESS.equals(iElementType)) {
 			return ADDRESS_KEYS;
-		} else if (Asm6502Type.LABEL.equals(iElementType) || Asm6502Type.LABEL_ARGUMENT.equals(iElementType)) {
+		} else if (Asm6502Type.LABEL_DECLARATION.equals(iElementType) || Asm6502Type.LABEL_ARGUMENT.equals(iElementType)) {
 			return LABEL_KEYS;
 		} else if (Asm6502Type.MNEMONIC.equals(iElementType)) {
 			return MNEMONIC_KEYS;
