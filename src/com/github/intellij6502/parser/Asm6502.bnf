@@ -15,6 +15,7 @@
 }
 
 asm6502File ::= item_*
+			;
 private item_ ::= LABEL_DECLARATION
 				| directive_command
 				| mnemonic_command
@@ -30,14 +31,25 @@ directive_argument ::= DIRECTIVE_NUMBER
 
 // mnemonic command
 mnemonic_command ::= MNEMONIC mnemonic_argument?
+					;
 mnemonic_argument ::= number
-					| ADDRESS
+					| address_argument
 					| indirect
+					| ACCUMULATOR
 					| LABEL_ARGUMENT
 					;
 
+// address (with or without register)
+address_argument ::= ADDRESS register?
+					;
+
 // indirect
-indirect ::= OPEN_PARENTHESIS ADDRESS CLOSE_PARENTHESIS
+indirect ::= OPEN_PARENTHESIS ADDRESS register? CLOSE_PARENTHESIS
+			;
+
+// register modifier
+register ::= REGISTER_COMMA (REGISTER_X | REGISTER_Y)
+			;
 
 // numbers
 number ::= HEXADECIMAL_VALUE
