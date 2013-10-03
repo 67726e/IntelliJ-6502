@@ -1,4 +1,4 @@
-package us.hexcoder.asm6502.configuration;
+package us.hexcoder.asm6502.parser;
 
 import com.intellij.lang.ASTNode;
 import com.intellij.lang.Language;
@@ -14,6 +14,7 @@ import com.intellij.psi.TokenType;
 import com.intellij.psi.tree.IFileElementType;
 import com.intellij.psi.tree.TokenSet;
 import org.jetbrains.annotations.NotNull;
+import us.hexcoder.asm6502.configuration.Asm6502Language;
 import us.hexcoder.asm6502.lexer.Asm6502LexerAdapter;
 import us.hexcoder.asm6502.parser.Asm6502Parser;
 import us.hexcoder.asm6502.psi.Asm6502File;

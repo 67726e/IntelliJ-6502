@@ -33,6 +33,6 @@
 	<extensions defaultExtensionNs="com.intellij">
 		<fileTypeFactory implementation="us.hexcoder.asm6502.configuration.Asm6502FileTypeFactory" />
 		<lang.parserDefinition language="6502"
-							   implementationClass="us.hexcoder.asm6502.configuration.Asm6502ParserDefinition" />
+							   implementationClass="us.hexcoder.asm6502.parser.Asm6502ParserDefinition" />
 	</extensions>
 </idea-plugin>
