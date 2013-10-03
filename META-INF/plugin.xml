@@ -36,5 +36,6 @@
 							   implementationClass="us.hexcoder.asm6502.parser.Asm6502ParserDefinition" />
 		<lang.syntaxHighlighterFactory key="6502"
 								implementationClass="us.hexcoder.asm6502.highlighter.Asm6502SyntaxHighlighterFactory" />
+		<colorSettingsPage implementation="us.hexcoder.asm6502.settings.Asm6502ColorSettingsPage" />
 	</extensions>
 </idea-plugin>

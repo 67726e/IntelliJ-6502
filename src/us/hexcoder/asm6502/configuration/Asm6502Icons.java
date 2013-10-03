@@ -9,5 +9,5 @@ import javax.swing.*;
  */
 
 public class Asm6502Icons {
-	public static final Icon ICON = IconLoader.getIcon("/us/hexcoder/asm6502/icons/icon.png");
+	public static final Icon ICON = IconLoader.getIcon("/us/hexcoder/asm6502/resources/icon.png");
 }

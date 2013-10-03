@@ -1,0 +1,16 @@
+
+LABEL:
+    .include "TEST" ; comment
+    JMP $2000
+    JMP ($40)
+    JMP ($40)
+    JMP ($40, x)
+    JMP ($40, x)
+    SEI
+    ASL A
+    JMP $40, x
+    JMP $40, y
+    INX
+    INY
+;    .include "TEST"
+    JMP LABEL
