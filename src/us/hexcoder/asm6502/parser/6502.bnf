@@ -1,6 +1,6 @@
 {
 	parserClass="us.hexcoder.asm6502.parser.Asm6502Parser"
-	stubClass="us.hexcoder.asm6502.parser.GeneratedParserUtilBase"
+	stubParserClass="us.hexcoder.asm6502.parser.GeneratedParserUtilBase"
 
 	extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
 
@@ -15,9 +15,29 @@
 }
 
 asm6502File ::= Element*
+		;
 
-Element ::= (COMMENT|CRLF|LABEL|Operation|Operand)
+Element ::= COMMENT
+		| CRLF
+		| LABEL
+		| Command
+		;
 
-Operation ::= (DIRECTIVE|MNEMONIC)
+Command ::= (Operation Operand?)
 
-Operand ::= (BINARY_VALUE|DECIMAL_VALUE|HEXADECIMAL_VALUE|LABEL_VALUE)
+Operation ::= DIRECTIVE
+		| MNEMONIC
+		;
+
+Operand ::= ACCUMULATOR_VALUE
+		| LABEL_VALUE
+		| BINARY_VALUE
+		| DECIMAL_VALUE
+		| HEXADECIMAL_VALUE
+		| ZERO_PAGE_X_VALUE
+		| ZERO_PAGE_Y_VALUE
+		| ADDRESS_VALUE
+		| INDIRECT_X_VALUE
+		| INDIRECT_Y_VALUE
+		| INDIRECT_VALUE
+		;
