@@ -37,15 +37,27 @@ INDIRECT_VALUE="($"[0-9a-fA-F]+")"
 INDIRECT_X_VALUE="($"[0-9a-fA-F]+","[\ \t\f]*[xX]")"
 INDIRECT_Y_VALUE="($"[0-9a-fA-F]+","[\ \t\f]*[yY]")"
 
+NUMBER=[0-9]+
+STRING="\""(.+?)"\""
+
+%state DIRECTIVE_OPERAND
 %state OPERAND
 
 %%
 
 <YYINITIAL> {
 	{COMMENT}							{ yybegin(YYINITIAL); return Asm6502Types.COMMENT; }
-	{DIRECTIVE}							{ yybegin(OPERAND); return Asm6502Types.DIRECTIVE; }
+	{DIRECTIVE}							{ yybegin(DIRECTIVE_OPERAND); return Asm6502Types.DIRECTIVE; }
 	{LABEL}								{ yybegin(YYINITIAL); return Asm6502Types.LABEL; }
 	{MNEMONIC} 							{ yybegin(OPERAND); return Asm6502Types.MNEMONIC; }
+}
+
+<DIRECTIVE_OPERAND> {
+	{NUMBER}							{ yybegin(YYINITIAL); return Asm6502Types.NUMBER; }
+	{STRING}							{ yybegin(YYINITIAL); return Asm6502Types.STRING; }
+
+	{WHITESPACE}+						{ return TokenType.WHITE_SPACE; }
+	.									{ yybegin(YYINITIAL); return TokenType.BAD_CHARACTER; }
 }
 
 <OPERAND> {

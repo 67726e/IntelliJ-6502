@@ -20,13 +20,11 @@ asm6502File ::= Element*
 Element ::= COMMENT
 		| CRLF
 		| LABEL
-		| Command
+		| Operation
 		;
 
-Command ::= (Operation Operand?)
-
-Operation ::= DIRECTIVE
-		| MNEMONIC
+Operation ::= (MNEMONIC Operand?)
+		| (DIRECTIVE DirectiveOperand)
 		;
 
 Operand ::= ACCUMULATOR_VALUE
@@ -40,4 +38,8 @@ Operand ::= ACCUMULATOR_VALUE
 		| INDIRECT_X_VALUE
 		| INDIRECT_Y_VALUE
 		| INDIRECT_VALUE
+		;
+
+DirectiveOperand ::= STRING
+		| NUMBER
 		;
