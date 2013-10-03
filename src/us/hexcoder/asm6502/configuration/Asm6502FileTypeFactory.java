@@ -12,6 +12,6 @@ public class Asm6502FileTypeFactory extends FileTypeFactory {
 
 	@Override
 	public void createFileTypes(@NotNull FileTypeConsumer fileTypeConsumer) {
-		fileTypeConsumer.consume(Asm6502FileType.INSTANCE, Asm6502FileType.INSTANCE.getName());
+		fileTypeConsumer.consume(Asm6502FileType.INSTANCE, "6502");
 	}
 }

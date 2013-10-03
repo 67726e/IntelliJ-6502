@@ -1,0 +1,23 @@
+{
+	parserClass="us.hexcoder.asm6502.parser.Asm6502Parser"
+	stubClass="us.hexcoder.asm6502.parser.GeneratedParserUtilBase"
+
+	extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+
+	psiClassPrefix="Asm6502"
+	psiImplClassSuffix="Impl"
+	psiPackage="us.hexcoder.asm6502.psi"
+	psiImplPackage="us.hexcoder.asm6502.psi.impl"
+
+	elementTypeHolderClass="us.hexcoder.asm6502.psi.Asm6502Types"
+	elementTypeClass="us.hexcoder.asm6502.psi.Asm6502ElementType"
+	tokenTypeClass="us.hexcoder.asm6502.psi.Asm6502TokenType"
+}
+
+asm6502File ::= Element*
+
+Element ::= (COMMENT|CRLF|LABEL|Operation|Operand)
+
+Operation ::= (DIRECTIVE|MNEMONIC)
+
+Operand ::= (BINARY_VALUE|DECIMAL_VALUE|HEXADECIMAL_VALUE|LABEL_VALUE)

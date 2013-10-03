@@ -42,3 +42,6 @@ Session.vim
 ### Custom ###
 gen
 
+# TODO: Figure out how to get these files in the gen/ folder instead
+src/us/hexcoder/asm6502/lexer/Asm6502Lexer.java
+src/us/hexcoder/asm6502/lexer/Asm6502LexerAdapter.java
