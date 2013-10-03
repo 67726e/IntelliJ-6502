@@ -1,4 +1,4 @@
-package com.github.intellij6502.file;
+package us.hexcoder.asm6502.configuration;
 
 import com.intellij.openapi.fileTypes.FileTypeConsumer;
 import com.intellij.openapi.fileTypes.FileTypeFactory;
@@ -12,7 +12,6 @@ public class Asm6502FileTypeFactory extends FileTypeFactory {
 
 	@Override
 	public void createFileTypes(@NotNull FileTypeConsumer fileTypeConsumer) {
-		// TODO: Create FileNameMatcher to allow for multiple file type extensions
-		fileTypeConsumer.consume(Asm6502FileType.INSTANCE, Asm6502FileType.INSTANCE.getDefaultExtension());
+		fileTypeConsumer.consume(Asm6502FileType.INSTANCE, Asm6502FileType.INSTANCE.getName());
 	}
 }

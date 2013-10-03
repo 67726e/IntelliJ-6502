@@ -31,13 +31,6 @@
 	</actions>
 
 	<extensions defaultExtensionNs="com.intellij">
-		<fileTypeFactory implementation="com.github.intellij6502.file.Asm6502FileTypeFactory" />
-		<lang.parserDefinition language="6502"
-			implementationClass="com.github.intellij6502.parser.Asm6502ParserDefinition" />
-		<lang.syntaxHighlighterFactory key="6502"
-			implementationClass="com.github.intellij6502.highlighter.Asm6502SyntaxHighlighterFactory" />
-		<colorSettingsPage implementation="com.github.intellij6502.settings.Asm6502ColorSettingsPage" />
-		<lang.commenter language="6502" implementationClass="com.github.intellij6502.Asm6502Commenter" />
-		<completion.contributor language="6502" implementationClass="com.github.intellij6502.Asm6502CompletionContributor" />
+		<fileTypeFactory implementation="us.hexcoder.asm6502.configuration.Asm6502FileTypeFactory" />
 	</extensions>
 </idea-plugin>

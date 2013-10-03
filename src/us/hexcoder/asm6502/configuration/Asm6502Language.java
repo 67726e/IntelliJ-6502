@@ -1,4 +1,4 @@
-package com.github.intellij6502;
+package us.hexcoder.asm6502.configuration;
 
 import com.intellij.lang.Language;
 
@@ -10,6 +10,6 @@ public class Asm6502Language extends Language {
 	public static final Asm6502Language INSTANCE = new Asm6502Language();
 
 	private Asm6502Language() {
-		super("6502");
+		super("Asm6502");
 	}
 }
