@@ -24,7 +24,7 @@ Element ::= COMMENT
 		;
 
 Operation ::= (MNEMONIC Operand?)
-		| (DIRECTIVE DirectiveOperand)
+		| (DIRECTIVE DirectiveArgument)
 		;
 
 Operand ::= ACCUMULATOR_VALUE
@@ -40,6 +40,6 @@ Operand ::= ACCUMULATOR_VALUE
 		| INDIRECT_VALUE
 		;
 
-DirectiveOperand ::= STRING
+DirectiveArgument ::= STRING
 		| NUMBER
 		;
