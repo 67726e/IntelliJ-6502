@@ -42,6 +42,12 @@ public class Asm6502SyntaxHighlighter extends SyntaxHighlighterBase {
 		TOKEN_HIGHLIGHTS.put(Asm6502Types.COMMENT, Asm6502TextAttribute.COMMENT.toArray());
 		TOKEN_HIGHLIGHTS.put(Asm6502Types.LABEL, Asm6502TextAttribute.LABEL.toArray());
 		TOKEN_HIGHLIGHTS.put(Asm6502Types.LABEL_OPERAND, Asm6502TextAttribute.LABEL.toArray());
+		TOKEN_HIGHLIGHTS.put(Asm6502Types.COMMA, Asm6502TextAttribute.COMMA.toArray());
+
+		// Accumulator & registers
+		TOKEN_HIGHLIGHTS.put(Asm6502Types.ACCUMULATOR_OPERAND, Asm6502TextAttribute.REGISTER.toArray());
+		TOKEN_HIGHLIGHTS.put(Asm6502Types.REGISTER_X, Asm6502TextAttribute.REGISTER.toArray());
+		TOKEN_HIGHLIGHTS.put(Asm6502Types.REGISTER_Y, Asm6502TextAttribute.REGISTER.toArray());
 
 		TOKEN_HIGHLIGHTS.put(TokenType.BAD_CHARACTER, Asm6502TextAttribute.INVALID.toArray());
 	}

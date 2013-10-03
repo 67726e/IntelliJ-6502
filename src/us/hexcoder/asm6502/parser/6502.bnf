@@ -30,8 +30,7 @@ Operation ::= (MNEMONIC Operand?)
 Operand ::= ACCUMULATOR_OPERAND
 		| LABEL_OPERAND
 		| OperandNumber
-		| ZERO_PAGE_X_VALUE
-		| ZERO_PAGE_Y_VALUE
+		| OperandZeroPage
 		| ADDRESS_VALUE
 		| INDIRECT_X_VALUE
 		| INDIRECT_Y_VALUE
@@ -41,6 +40,9 @@ Operand ::= ACCUMULATOR_OPERAND
 OperandNumber ::= BINARY_OPERAND
 		| DECIMAL_OPERAND
 		| HEXADECIMAL_OPERAND
+		;
+
+OperandZeroPage ::= ADDRESS_VALUE COMMA (REGISTER_X | REGISTER_Y)
 		;
 
 DirectiveArgument ::= STRING
