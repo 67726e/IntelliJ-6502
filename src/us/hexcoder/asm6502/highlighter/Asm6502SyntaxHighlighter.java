@@ -21,17 +21,28 @@ public class Asm6502SyntaxHighlighter extends SyntaxHighlighterBase {
 			new HashMap<IElementType, TextAttributesKey[]>();
 
 	static {
-		TOKEN_HIGHLIGHTS.put(Asm6502Types.COMMENT, Asm6502TextAttribute.COMMENT.toArray());
-		TOKEN_HIGHLIGHTS.put(Asm6502Types.STRING, Asm6502TextAttribute.STRING.toArray());
-		TOKEN_HIGHLIGHTS.put(Asm6502Types.NUMBER, Asm6502TextAttribute.NUMBER.toArray());
-		TOKEN_HIGHLIGHTS.put(Asm6502Types.BINARY_VALUE, Asm6502TextAttribute.NUMBER.toArray());
-		TOKEN_HIGHLIGHTS.put(Asm6502Types.DECIMAL_VALUE, Asm6502TextAttribute.NUMBER.toArray());
-		TOKEN_HIGHLIGHTS.put(Asm6502Types.HEXADECIMAL_VALUE, Asm6502TextAttribute.NUMBER.toArray());
-		TOKEN_HIGHLIGHTS.put(Asm6502Types.ADDRESS_VALUE, Asm6502TextAttribute.NUMBER.toArray());
-		TOKEN_HIGHLIGHTS.put(Asm6502Types.INDIRECT_VALUE, Asm6502TextAttribute.NUMBER.toArray());
 		TOKEN_HIGHLIGHTS.put(Asm6502Types.MNEMONIC, Asm6502TextAttribute.MNEMONIC.toArray());
 		TOKEN_HIGHLIGHTS.put(Asm6502Types.DIRECTIVE, Asm6502TextAttribute.DIRECTIVE.toArray());
+
+		// Mnemonic operands
+		TOKEN_HIGHLIGHTS.put(Asm6502Types.BINARY_OPERAND, Asm6502TextAttribute.NUMBER.toArray());
+		TOKEN_HIGHLIGHTS.put(Asm6502Types.DECIMAL_OPERAND, Asm6502TextAttribute.NUMBER.toArray());
+		TOKEN_HIGHLIGHTS.put(Asm6502Types.HEXADECIMAL_OPERAND, Asm6502TextAttribute.NUMBER.toArray());
+
+		TOKEN_HIGHLIGHTS.put(Asm6502Types.ADDRESS_VALUE, Asm6502TextAttribute.NUMBER.toArray());
+		TOKEN_HIGHLIGHTS.put(Asm6502Types.INDIRECT_VALUE, Asm6502TextAttribute.NUMBER.toArray());
+
+		// Directive arguments
+		TOKEN_HIGHLIGHTS.put(Asm6502Types.STRING, Asm6502TextAttribute.STRING.toArray());
+		TOKEN_HIGHLIGHTS.put(Asm6502Types.BINARY_NUMBER, Asm6502TextAttribute.NUMBER.toArray());
+		TOKEN_HIGHLIGHTS.put(Asm6502Types.DECIMAL_NUMBER, Asm6502TextAttribute.NUMBER.toArray());
+		TOKEN_HIGHLIGHTS.put(Asm6502Types.HEXADECIMAL_NUMBER, Asm6502TextAttribute.NUMBER.toArray());
+
+		// Misc. punctuation
+		TOKEN_HIGHLIGHTS.put(Asm6502Types.COMMENT, Asm6502TextAttribute.COMMENT.toArray());
 		TOKEN_HIGHLIGHTS.put(Asm6502Types.LABEL, Asm6502TextAttribute.LABEL.toArray());
+		TOKEN_HIGHLIGHTS.put(Asm6502Types.LABEL_OPERAND, Asm6502TextAttribute.LABEL.toArray());
+
 		TOKEN_HIGHLIGHTS.put(TokenType.BAD_CHARACTER, Asm6502TextAttribute.INVALID.toArray());
 	}
 

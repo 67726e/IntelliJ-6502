@@ -21,6 +21,8 @@ public enum Asm6502TextAttribute {
 	DIRECTIVE("Directive", createTextAttributesKey("6502_DIRECTIVE", toTextAttributes(JBColor.CYAN, null, null, null, Font.PLAIN))),
 	LABEL("Label", createTextAttributesKey("6502_LABEL", toTextAttributes(JBColor.WHITE, null, null, null, Font.PLAIN))),
 	STRING("String", createTextAttributesKey("6502_STRING", SyntaxHighlighterColors.STRING)),
+	PARENTHESIS("Parenthesis", createTextAttributesKey("6502_PARENTHESIS", SyntaxHighlighterColors.PARENTHS)),
+	COMMA("Comma", createTextAttributesKey("6502_COMMA", SyntaxHighlighterColors.COMMA)),
 	INVALID("Invalid", createTextAttributesKey("6502_INVALID", toTextAttributes(JBColor.RED, null, null, null, Font.BOLD)));
 
 	private String name;

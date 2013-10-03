@@ -19,15 +19,18 @@ CRLF=\n|\r|\r\n
 WHITESPACE=[\ \t\f]
 COMMENT=";"[^\r\n]*
 
+OPEN_PAREN="("
+CLOSE_PAREN=")"
+
 DIRECTIVE="."[a-zA-Z]+
 LABEL=[a-zA-Z0-9]+":"
 MNEMONIC=[a-zA-Z]{3}
 
-ACCUMULATOR_VALUE=[aA]
-LABEL_VALUE=[a-zA-Z]+
-BINARY_VALUE="#%"[0-1]+
-DECIMAL_VALUE="#"[0-9]+
-HEXADECIMAL_VALUE="#$"[0-9a-fA-F]+
+ACCUMULATOR_OPERAND=[aA]
+LABEL_OPERAND=[a-zA-Z]+
+BINARY_OPERAND="#%"[0-1]+
+DECIMAL_OPERAND="#"[0-9]+
+HEXADECIMAL_OPERAND="#$"[0-9a-fA-F]+
 
 ZERO_PAGE_X_VALUE="$"[0-9a-fA-F]+","[\ \t\f]*[xX]
 ZERO_PAGE_Y_VALUE="$"[0-9a-fA-F]+","[\ \t\f]*[yY]
@@ -37,7 +40,9 @@ INDIRECT_VALUE="($"[0-9a-fA-F]+")"
 INDIRECT_X_VALUE="($"[0-9a-fA-F]+","[\ \t\f]*[xX]")"
 INDIRECT_Y_VALUE="($"[0-9a-fA-F]+","[\ \t\f]*[yY]")"
 
-NUMBER=[0-9]+
+BINARY_NUMBER="%"[0-1]+
+DECIMAL_NUMBER=[0-9]+
+HEXADECIMAL_NUMBER="0x"[0-9a-fA-F]+
 STRING="\""(.+?)"\""
 
 %state DIRECTIVE_ARGUMENT
@@ -46,14 +51,15 @@ STRING="\""(.+?)"\""
 %%
 
 <YYINITIAL> {
-	{COMMENT}							{ yybegin(YYINITIAL); return Asm6502Types.COMMENT; }
 	{DIRECTIVE}							{ yybegin(DIRECTIVE_ARGUMENT); return Asm6502Types.DIRECTIVE; }
 	{LABEL}								{ yybegin(YYINITIAL); return Asm6502Types.LABEL; }
 	{MNEMONIC} 							{ yybegin(OPERAND); return Asm6502Types.MNEMONIC; }
 }
 
 <DIRECTIVE_ARGUMENT> {
-	{NUMBER}							{ yybegin(YYINITIAL); return Asm6502Types.NUMBER; }
+	{BINARY_NUMBER}						{ yybegin(YYINITIAL); return Asm6502Types.BINARY_NUMBER; }
+	{DECIMAL_NUMBER}					{ yybegin(YYINITIAL); return Asm6502Types.DECIMAL_NUMBER; }
+	{HEXADECIMAL_NUMBER}				{ yybegin(YYINITIAL); return Asm6502Types.HEXADECIMAL_NUMBER; }
 	{STRING}							{ yybegin(YYINITIAL); return Asm6502Types.STRING; }
 
 	{WHITESPACE}+						{ return TokenType.WHITE_SPACE; }
@@ -61,11 +67,11 @@ STRING="\""(.+?)"\""
 }
 
 <OPERAND> {
-	{ACCUMULATOR_VALUE}					{ yybegin(YYINITIAL); return Asm6502Types.ACCUMULATOR_VALUE; }
-	{LABEL_VALUE}						{ yybegin(YYINITIAL); return Asm6502Types.LABEL_VALUE; }
-	{BINARY_VALUE} 						{ yybegin(YYINITIAL); return Asm6502Types.BINARY_VALUE; }
-	{DECIMAL_VALUE} 					{ yybegin(YYINITIAL); return Asm6502Types.DECIMAL_VALUE; }
-	{HEXADECIMAL_VALUE} 				{ yybegin(YYINITIAL); return Asm6502Types.HEXADECIMAL_VALUE; }
+	{ACCUMULATOR_OPERAND}				{ yybegin(YYINITIAL); return Asm6502Types.ACCUMULATOR_OPERAND; }
+	{LABEL_OPERAND}						{ yybegin(YYINITIAL); return Asm6502Types.LABEL_OPERAND; }
+	{BINARY_OPERAND} 					{ yybegin(YYINITIAL); return Asm6502Types.BINARY_OPERAND; }
+	{DECIMAL_OPERAND} 					{ yybegin(YYINITIAL); return Asm6502Types.DECIMAL_OPERAND; }
+	{HEXADECIMAL_OPERAND} 				{ yybegin(YYINITIAL); return Asm6502Types.HEXADECIMAL_OPERAND; }
 
 	{ZERO_PAGE_X_VALUE} 				{ yybegin(YYINITIAL); return Asm6502Types.ZERO_PAGE_X_VALUE; }
 	{ZERO_PAGE_Y_VALUE} 				{ yybegin(YYINITIAL); return Asm6502Types.ZERO_PAGE_Y_VALUE; }
@@ -79,6 +85,7 @@ STRING="\""(.+?)"\""
 	.									{ yybegin(YYINITIAL); return TokenType.BAD_CHARACTER; }
 }
 
+{COMMENT}								{ yybegin(YYINITIAL); return Asm6502Types.COMMENT; }
 {CRLF}									{ yybegin(YYINITIAL); return Asm6502Types.CRLF; }
 {WHITESPACE}+							{ yybegin(YYINITIAL); return TokenType.WHITE_SPACE; }
 .										{ return TokenType.BAD_CHARACTER; }

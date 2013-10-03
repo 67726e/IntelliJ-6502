@@ -27,11 +27,9 @@ Operation ::= (MNEMONIC Operand?)
 		| (DIRECTIVE DirectiveArgument)
 		;
 
-Operand ::= ACCUMULATOR_VALUE
-		| LABEL_VALUE
-		| BINARY_VALUE
-		| DECIMAL_VALUE
-		| HEXADECIMAL_VALUE
+Operand ::= ACCUMULATOR_OPERAND
+		| LABEL_OPERAND
+		| OperandNumber
 		| ZERO_PAGE_X_VALUE
 		| ZERO_PAGE_Y_VALUE
 		| ADDRESS_VALUE
@@ -40,6 +38,16 @@ Operand ::= ACCUMULATOR_VALUE
 		| INDIRECT_VALUE
 		;
 
+OperandNumber ::= BINARY_OPERAND
+		| DECIMAL_OPERAND
+		| HEXADECIMAL_OPERAND
+		;
+
 DirectiveArgument ::= STRING
-		| NUMBER
+		| DirectiveNumber
+		;
+
+DirectiveNumber ::= BINARY_NUMBER
+		| DECIMAL_NUMBER
+		| HEXADECIMAL_NUMBER
 		;
