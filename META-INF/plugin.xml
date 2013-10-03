@@ -34,5 +34,7 @@
 		<fileTypeFactory implementation="us.hexcoder.asm6502.configuration.Asm6502FileTypeFactory" />
 		<lang.parserDefinition language="6502"
 							   implementationClass="us.hexcoder.asm6502.parser.Asm6502ParserDefinition" />
+		<lang.syntaxHighlighterFactory key="6502"
+								implementationClass="us.hexcoder.asm6502.highlighter.Asm6502SyntaxHighlighterFactory" />
 	</extensions>
 </idea-plugin>
