@@ -8,6 +8,7 @@
 	psiImplClassSuffix="Impl"
 	psiPackage="us.hexcoder.asm6502.psi"
 	psiImplPackage="us.hexcoder.asm6502.psi.impl"
+	psiImplUtilClass="us.hexcoder.asm6502.psi.Asm6502PsiImplUtil"
 
 	elementTypeHolderClass="us.hexcoder.asm6502.psi.Asm6502Types"
 	elementTypeClass="us.hexcoder.asm6502.psi.Asm6502ElementType"
@@ -19,7 +20,7 @@ asm6502File ::= Element*
 
 Element ::= COMMENT
 		| CRLF
-		| LABEL
+		| LabelDeclaration
 		| Operation
 		;
 
@@ -60,4 +61,7 @@ DirectiveArgument ::= DIRECTIVE_STRING
 DirectiveNumber ::= BINARY_NUMBER
 		| DECIMAL_NUMBER
 		| HEXADECIMAL_NUMBER
+		;
+
+LabelDeclaration ::= LABEL
 		;
