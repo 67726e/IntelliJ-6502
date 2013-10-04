@@ -59,10 +59,6 @@ HEXADECIMAL_OPERAND="#$"[0-9a-fA-F]+
 
 ADDRESS_VALUE="$"[0-9a-fA-F]+
 
-INDIRECT_VALUE="($"[0-9a-fA-F]+")"
-INDIRECT_X_VALUE="($"[0-9a-fA-F]+","[\ \t\f]*[xX]")"
-INDIRECT_Y_VALUE="($"[0-9a-fA-F]+","[\ \t\f]*[yY]")"
-
 BINARY_NUMBER="%"[0-1]+
 DECIMAL_NUMBER=[0-9]+
 HEXADECIMAL_NUMBER="0x"[0-9a-fA-F]+
@@ -73,6 +69,8 @@ REGISTER_Y=[yY]
 
 %state DIRECTIVE_ARGUMENT
 %state OPERAND
+%state OPEN_PAREN
+%state CLOSE_PAREN
 %state COMMA
 %state ADDRESS
 
@@ -101,29 +99,42 @@ REGISTER_Y=[yY]
 	{DECIMAL_OPERAND} 					{ yybegin(YYINITIAL); return Asm6502Types.DECIMAL_OPERAND; }
 	{HEXADECIMAL_OPERAND} 				{ yybegin(YYINITIAL); return Asm6502Types.HEXADECIMAL_OPERAND; }
 
-	{ADDRESS_VALUE}						{ yybegin(ADDRESS); return Asm6502Types.ADDRESS_VALUE; }
+	{ADDRESS_VALUE}						{ pushState(YYINITIAL); yybegin(ADDRESS); return Asm6502Types.ADDRESS_VALUE; }
 
-	{INDIRECT_Y_VALUE}					{ yybegin(YYINITIAL); return Asm6502Types.INDIRECT_X_VALUE; }
-	{INDIRECT_X_VALUE}					{ yybegin(YYINITIAL); return Asm6502Types.INDIRECT_Y_VALUE; }
-	{INDIRECT_VALUE}					{ yybegin(YYINITIAL); return Asm6502Types.INDIRECT_VALUE; }
+	{OPEN_PAREN}						{ yybegin(OPEN_PAREN); return Asm6502Types.OPEN_PAREN; }
 
 	{WHITESPACE}+						{ return TokenType.WHITE_SPACE; }
 	.									{ yybegin(YYINITIAL); return TokenType.BAD_CHARACTER; }
 }
 
+<OPEN_PAREN> {
+	{ADDRESS_VALUE}							{ pushState(CLOSE_PAREN); yybegin(ADDRESS); return Asm6502Types.ADDRESS_VALUE; }
+
+	{WHITESPACE}+						{ return TokenType.WHITE_SPACE; }
+	.									{ yybegin(YYINITIAL); return TokenType.BAD_CHARACTER; }
+}
+
+<CLOSE_PAREN> {
+	{CLOSE_PAREN}						{ yybegin(YYINITIAL); return Asm6502Types.CLOSE_PAREN; }
+
+	{WHITESPACE}+						{ return TokenType.WHITE_SPACE; }
+	.									{ yybegin(YYINITIAL); return TokenType.BAD_CHARACTER; }
+}
+
+// It is assumed that you will have a state on the stack to end with
 <ADDRESS> {
 	{COMMA}								{ yybegin(COMMA); return Asm6502Types.COMMA; }
 
 	{WHITESPACE}+						{ return TokenType.WHITE_SPACE; }
-	.									{ yybegin(YYINITIAL); return TokenType.BAD_CHARACTER; }
+	.									{ popState(); yypushback(1); }
 }
 
 <COMMA> {
-	{REGISTER_X} 						{ yybegin(YYINITIAL); return Asm6502Types.REGISTER_X; }
-	{REGISTER_Y} 						{ yybegin(YYINITIAL); return Asm6502Types.REGISTER_Y; }
+	{REGISTER_X} 						{ popState(); return Asm6502Types.REGISTER_X; }
+	{REGISTER_Y} 						{ popState(); return Asm6502Types.REGISTER_Y; }
 
 	{WHITESPACE}+						{ return TokenType.WHITE_SPACE; }
-	.									{ yybegin(YYINITIAL); return TokenType.BAD_CHARACTER; }
+	.									{ popState(); return TokenType.BAD_CHARACTER; }
 }
 
 {COMMENT}								{ yybegin(YYINITIAL); return Asm6502Types.COMMENT; }

@@ -30,7 +30,6 @@ public class Asm6502SyntaxHighlighter extends SyntaxHighlighterBase {
 		TOKEN_HIGHLIGHTS.put(Asm6502Types.HEXADECIMAL_OPERAND, Asm6502TextAttribute.NUMBER.toArray());
 
 		TOKEN_HIGHLIGHTS.put(Asm6502Types.ADDRESS_VALUE, Asm6502TextAttribute.NUMBER.toArray());
-		TOKEN_HIGHLIGHTS.put(Asm6502Types.INDIRECT_VALUE, Asm6502TextAttribute.NUMBER.toArray());
 
 		// Directive arguments
 		TOKEN_HIGHLIGHTS.put(Asm6502Types.STRING, Asm6502TextAttribute.STRING.toArray());
@@ -43,6 +42,8 @@ public class Asm6502SyntaxHighlighter extends SyntaxHighlighterBase {
 		TOKEN_HIGHLIGHTS.put(Asm6502Types.LABEL, Asm6502TextAttribute.LABEL.toArray());
 		TOKEN_HIGHLIGHTS.put(Asm6502Types.LABEL_OPERAND, Asm6502TextAttribute.LABEL.toArray());
 		TOKEN_HIGHLIGHTS.put(Asm6502Types.COMMA, Asm6502TextAttribute.COMMA.toArray());
+		TOKEN_HIGHLIGHTS.put(Asm6502Types.OPEN_PAREN, Asm6502TextAttribute.PARENTHESIS.toArray());
+		TOKEN_HIGHLIGHTS.put(Asm6502Types.CLOSE_PAREN, Asm6502TextAttribute.PARENTHESIS.toArray());
 
 		// Accumulator & registers
 		TOKEN_HIGHLIGHTS.put(Asm6502Types.ACCUMULATOR_OPERAND, Asm6502TextAttribute.REGISTER.toArray());

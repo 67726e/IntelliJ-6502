@@ -31,10 +31,8 @@ Operand ::= ACCUMULATOR_OPERAND
 		| LABEL_OPERAND
 		| OperandNumber
 		| OperandAddressRegister
+		| OperandIndirect
 		| ADDRESS_VALUE
-		| INDIRECT_X_VALUE
-		| INDIRECT_Y_VALUE
-		| INDIRECT_VALUE
 		;
 
 OperandNumber ::= BINARY_OPERAND
@@ -50,6 +48,9 @@ OperandAddressX ::= ADDRESS_VALUE COMMA REGISTER_X
 		;
 
 OperandAddressY ::= ADDRESS_VALUE COMMA REGISTER_Y
+		;
+
+OperandIndirect ::= OPEN_PAREN (OperandAddressRegister | ADDRESS_VALUE) CLOSE_PAREN
 		;
 
 DirectiveArgument ::= STRING
