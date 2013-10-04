@@ -1,16 +1,107 @@
+; Examples of Elements
+;LABEL:
+; Comment
+;	.directive %01
+;	.directive 0123456789
+;	.directive $0123456789abcdef
+;	.directive "include.6502" ; comment
 
+;	XXX #%01
+;	XXX #0123456789
+;	XXX #$0123456789abcdef
+;	XXX $12
+;	XXX $12,x
+;	XXX $12,y
+;	XXX $1234
+;	XXX $1234,x
+;	XXX $1234,y
+;	XXX ($1234)
+;	XXX ($12,x)
+;	XXX ($12,y)
+;	XXX A
+;	XXX
+;	XXX LABEL
+
+; Directives
+	.include "include.6502"
+	.includebin "include.bin"
+	.address $4400
+	.byte %01
+	.word 33
+
+; List of Operand Types
+;
+; Accumulator	XXX A
+; Immediate		XXX #$44
+; Zero Page		XXX $44
+; Zero Page X	XXX $44,x
+; Zero Page Y	XXX $44,y
+; Absolute		XXX $4444
+; Absolute X	XXX $4444,x
+; Absolute Y	XXX $4444,y
+; Indirect		XXX ($4444)
+; Indirect X	XXX ($44,x)
+; Indirect Y	XXX ($44,y)
+; Implied		XXX ; nothing here
+; Relative		XXX LABEL
+
+; List of Mnemonics/Operand Types
 LABEL:
-    .include "TEST" ; comment
-    JMP $2000
-    JMP ($40)
-    JMP ($40)
-    JMP ($40, x)
-    JMP ($40, x)
-    SEI
-    ASL A
-    JMP $40, x
-    JMP $40, y
-    INX
-    INY
-;    .include "TEST"
-    JMP LABEL
+	ADC #$44
+	AND #$44
+	ASL $44
+	BCC LABEL
+	BCS LABEL
+	BEQ LABEL
+	BIT $44
+	BMI LABEL
+	BNE LABEL
+
+	BPL LABEL
+	BRK ; Implied
+	BVC LABEL
+	CLC ; Implied
+	CLD ; Implied
+	CLI ; Implied
+	CLV ; Implied
+	CMP #$44
+	CPX #$44
+	CPY #$44
+	DEC $44
+
+	DEX ; Implied
+	DEY ; Implied
+	EOR #$44
+	INC $44
+	INX ; Implied
+	JMP LABEL
+	JSR LABEL
+	LDA	#$44
+	LDX #$44
+	LDY #$44
+	LSR A
+
+	NOP ; Implied
+	ORA #$44
+	PHA ; Implied
+	PHP ; Implied
+	PLA ; Implied
+	PLP ; Implied
+	ROL A
+	ROR A
+	RTI ; Implied
+	RTS ; Implied
+	SBC #$44
+	SEC ; Implied
+
+	SED ; Implied
+	SEI ; Implied
+	STA $44
+	STX $44
+	STY $44
+	TAX ; Implied
+	TAY ; Implied
+	TSX ; Implied
+	TXA ; Implied
+	TXS ; Implied
+	TYA ; Implied
