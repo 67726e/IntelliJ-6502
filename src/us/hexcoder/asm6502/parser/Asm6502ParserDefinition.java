@@ -27,7 +27,7 @@ import us.hexcoder.asm6502.psi.Asm6502Types;
 public class Asm6502ParserDefinition implements ParserDefinition {
 	public static final TokenSet WHITESPACES = TokenSet.create(TokenType.WHITE_SPACE);
 	public static final TokenSet COMMENTS = TokenSet.create(Asm6502Types.COMMENT);
-	public static final TokenSet STRINGS = TokenSet.create(Asm6502Types.STRING);
+	public static final TokenSet STRINGS = TokenSet.create(Asm6502Types.DIRECTIVE_STRING);
 
 	public static final IFileElementType FILE = new IFileElementType(Language.findInstance(Asm6502Language.class));
 

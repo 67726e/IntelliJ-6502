@@ -32,7 +32,7 @@ public class Asm6502SyntaxHighlighter extends SyntaxHighlighterBase {
 		TOKEN_HIGHLIGHTS.put(Asm6502Types.ADDRESS_VALUE, Asm6502TextAttribute.NUMBER.toArray());
 
 		// Directive arguments
-		TOKEN_HIGHLIGHTS.put(Asm6502Types.STRING, Asm6502TextAttribute.STRING.toArray());
+		TOKEN_HIGHLIGHTS.put(Asm6502Types.DIRECTIVE_STRING, Asm6502TextAttribute.STRING.toArray());
 		TOKEN_HIGHLIGHTS.put(Asm6502Types.BINARY_NUMBER, Asm6502TextAttribute.NUMBER.toArray());
 		TOKEN_HIGHLIGHTS.put(Asm6502Types.DECIMAL_NUMBER, Asm6502TextAttribute.NUMBER.toArray());
 		TOKEN_HIGHLIGHTS.put(Asm6502Types.HEXADECIMAL_NUMBER, Asm6502TextAttribute.NUMBER.toArray());

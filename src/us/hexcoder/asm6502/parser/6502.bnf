@@ -53,7 +53,7 @@ OperandAddressY ::= ADDRESS_VALUE COMMA REGISTER_Y
 OperandIndirect ::= OPEN_PAREN (OperandAddressRegister | ADDRESS_VALUE) CLOSE_PAREN
 		;
 
-DirectiveArgument ::= STRING
+DirectiveArgument ::= DIRECTIVE_STRING
 		| DirectiveNumber
 		;
 

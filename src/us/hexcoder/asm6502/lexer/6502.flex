@@ -43,7 +43,7 @@ CRLF=\n|\r|\r\n
 WHITESPACE=[\ \t\f]
 COMMENT=";"[^\r\n]*
 COMMA=","
-
+STRING=\"
 OPEN_PAREN="("
 CLOSE_PAREN=")"
 
@@ -62,7 +62,6 @@ ADDRESS_VALUE="$"[0-9a-fA-F]+
 BINARY_NUMBER="%"[0-1]+
 DECIMAL_NUMBER=[0-9]+
 HEXADECIMAL_NUMBER="0x"[0-9a-fA-F]+
-STRING="\""(.+?)"\""
 
 REGISTER_X=[xX]
 REGISTER_Y=[yY]
@@ -73,6 +72,7 @@ REGISTER_Y=[yY]
 %state CLOSE_PAREN
 %state COMMA
 %state ADDRESS
+%xstate STRING
 
 %%
 
@@ -86,7 +86,7 @@ REGISTER_Y=[yY]
 	{BINARY_NUMBER}						{ yybegin(YYINITIAL); return Asm6502Types.BINARY_NUMBER; }
 	{DECIMAL_NUMBER}					{ yybegin(YYINITIAL); return Asm6502Types.DECIMAL_NUMBER; }
 	{HEXADECIMAL_NUMBER}				{ yybegin(YYINITIAL); return Asm6502Types.HEXADECIMAL_NUMBER; }
-	{STRING}							{ yybegin(YYINITIAL); return Asm6502Types.STRING; }
+	{STRING}							{ yybegin(STRING); }
 
 	{WHITESPACE}+						{ return TokenType.WHITE_SPACE; }
 	.									{ yybegin(YYINITIAL); return TokenType.BAD_CHARACTER; }
@@ -135,6 +135,12 @@ REGISTER_Y=[yY]
 
 	{WHITESPACE}+						{ return TokenType.WHITE_SPACE; }
 	.									{ popState(); return TokenType.BAD_CHARACTER; }
+}
+
+<STRING> {
+	{STRING}							{ yybegin(YYINITIAL); return Asm6502Types.DIRECTIVE_STRING; }
+	{CRLF}								{ /* TODO: Capture string contents eventually */ }
+	.									{ /* TODO: Capture string contents eventually */ }
 }
 
 {COMMENT}								{ yybegin(YYINITIAL); return Asm6502Types.COMMENT; }
