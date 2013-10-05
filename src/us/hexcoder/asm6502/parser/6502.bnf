@@ -64,13 +64,16 @@ OperandAddressY ::= ADDRESS_VALUE COMMA REGISTER_Y
 OperandIndirect ::= OPEN_PAREN (OperandAddressRegister | ADDRESS_VALUE) CLOSE_PAREN
 		;
 
-DirectiveArgument ::= DIRECTIVE_STRING
+DirectiveArgument ::= DirectiveString
 		| DirectiveNumber
 		;
 
 DirectiveNumber ::= BINARY_NUMBER
 		| DECIMAL_NUMBER
 		| HEXADECIMAL_NUMBER
+		;
+
+DirectiveString ::= (OPEN_STRING STRING_CHAR* CLOSE_STRING)
 		;
 
 LabelDeclaration ::= LABEL

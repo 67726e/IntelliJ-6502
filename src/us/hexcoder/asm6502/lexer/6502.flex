@@ -43,7 +43,6 @@ CRLF=\n|\r|\r\n
 WHITESPACE=[\ \t\f]
 COMMENT=";"[^\r\n]*
 COMMA=","
-STRING=\"
 OPEN_PAREN="("
 CLOSE_PAREN=")"
 
@@ -86,10 +85,10 @@ REGISTER_Y=[yY]
 	{BINARY_NUMBER}						{ yybegin(YYINITIAL); return Asm6502Types.BINARY_NUMBER; }
 	{DECIMAL_NUMBER}					{ yybegin(YYINITIAL); return Asm6502Types.DECIMAL_NUMBER; }
 	{HEXADECIMAL_NUMBER}				{ yybegin(YYINITIAL); return Asm6502Types.HEXADECIMAL_NUMBER; }
-	{STRING}							{ yybegin(STRING); }
+	\"									{ yybegin(STRING); return Asm6502Types.OPEN_STRING; }
 
 	{WHITESPACE}+						{ return TokenType.WHITE_SPACE; }
-	.									{ yybegin(YYINITIAL); return TokenType.BAD_CHARACTER; }
+	.									{ yybegin(YYINITIAL); yypushback(1); }
 }
 
 <OPERAND> {
@@ -104,11 +103,11 @@ REGISTER_Y=[yY]
 	{OPEN_PAREN}						{ yybegin(OPEN_PAREN); return Asm6502Types.OPEN_PAREN; }
 
 	{WHITESPACE}+						{ return TokenType.WHITE_SPACE; }
-	.									{ yybegin(YYINITIAL); return TokenType.BAD_CHARACTER; }
+	.									{ yybegin(YYINITIAL); yypushback(1); }
 }
 
 <OPEN_PAREN> {
-	{ADDRESS_VALUE}							{ pushState(CLOSE_PAREN); yybegin(ADDRESS); return Asm6502Types.ADDRESS_VALUE; }
+	{ADDRESS_VALUE}						{ pushState(CLOSE_PAREN); yybegin(ADDRESS); return Asm6502Types.ADDRESS_VALUE; }
 
 	{WHITESPACE}+						{ return TokenType.WHITE_SPACE; }
 	.									{ yybegin(YYINITIAL); return TokenType.BAD_CHARACTER; }
@@ -138,9 +137,8 @@ REGISTER_Y=[yY]
 }
 
 <STRING> {
-	{STRING}							{ yybegin(YYINITIAL); return Asm6502Types.DIRECTIVE_STRING; }
-	{CRLF}								{ /* TODO: Capture string contents eventually */ }
-	.									{ /* TODO: Capture string contents eventually */ }
+	\"									{ yybegin(YYINITIAL); return Asm6502Types.CLOSE_STRING; }
+	[^\"]								{ return Asm6502Types.STRING_CHAR; }
 }
 
 {COMMENT}								{ yybegin(YYINITIAL); return Asm6502Types.COMMENT; }
