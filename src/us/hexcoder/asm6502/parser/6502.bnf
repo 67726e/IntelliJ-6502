@@ -24,8 +24,18 @@ Element ::= COMMENT
 		| Operation
 		;
 
-Operation ::= (MNEMONIC Operand?)
-		| (DIRECTIVE DirectiveArgument)
+Operation ::= MnemonicOperation
+		| DirectiveOperation
+		;
+
+DirectiveOperation ::= (DirectiveCommand DirectiveArgument?)
+		;
+
+DirectiveCommand ::= DIRECTIVE
+		;
+
+
+MnemonicOperation ::= (MNEMONIC Operand?)
 		;
 
 Operand ::= ACCUMULATOR_OPERAND

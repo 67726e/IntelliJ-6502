@@ -74,6 +74,12 @@ public abstract class AbstractPsiSearchUtil {
 		return elements;
 	}
 
+	protected static PsiElement findFirst(PsiElement element, ElementVisitor elementVisitor) {
+		List<PsiElement> elements = find(element, elementVisitor);
+
+		return (elements.isEmpty()) ? null : elements.get(0);
+	}
+
 	private static Collection<VirtualFile> getSourceFiles(Project project) {
 		return FileBasedIndex.getInstance().getContainingFiles(FileTypeIndex.NAME, Asm6502FileType.INSTANCE,
 				GlobalSearchScope.allScope(project));

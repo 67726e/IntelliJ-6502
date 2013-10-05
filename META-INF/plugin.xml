@@ -38,6 +38,9 @@
 								implementationClass="us.hexcoder.asm6502.highlighter.Asm6502SyntaxHighlighterFactory" />
 		<colorSettingsPage implementation="us.hexcoder.asm6502.settings.Asm6502ColorSettingsPage" />
 		<lang.commenter language="6502" implementationClass="us.hexcoder.asm6502.configuration.Asm6502Commenter" />
+
+		<!-- Annotators -->
 		<annotator language="6502" implementationClass="us.hexcoder.asm6502.annotator.Asm6502LabelAnnotator" />
+		<annotator language="6502" implementationClass="us.hexcoder.asm6502.annotator.Asm6502DirectiveAnnotator" />
 	</extensions>
 </idea-plugin>
