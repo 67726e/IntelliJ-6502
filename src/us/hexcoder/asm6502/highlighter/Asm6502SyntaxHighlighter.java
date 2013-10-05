@@ -28,8 +28,8 @@ public class Asm6502SyntaxHighlighter extends SyntaxHighlighterBase {
 		TOKEN_HIGHLIGHTS.put(Asm6502Types.BINARY_OPERAND, Asm6502TextAttribute.NUMBER.toArray());
 		TOKEN_HIGHLIGHTS.put(Asm6502Types.DECIMAL_OPERAND, Asm6502TextAttribute.NUMBER.toArray());
 		TOKEN_HIGHLIGHTS.put(Asm6502Types.HEXADECIMAL_OPERAND, Asm6502TextAttribute.NUMBER.toArray());
-
-		TOKEN_HIGHLIGHTS.put(Asm6502Types.ADDRESS_VALUE, Asm6502TextAttribute.NUMBER.toArray());
+		TOKEN_HIGHLIGHTS.put(Asm6502Types.ABSOLUTE_VALUE, Asm6502TextAttribute.NUMBER.toArray());
+		TOKEN_HIGHLIGHTS.put(Asm6502Types.ZERO_PAGE_VALUE, Asm6502TextAttribute.NUMBER.toArray());
 
 		// Directive arguments
 		TOKEN_HIGHLIGHTS.put(Asm6502Types.OPEN_STRING, Asm6502TextAttribute.STRING.toArray());

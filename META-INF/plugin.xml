@@ -42,5 +42,6 @@
 		<!-- Annotators -->
 		<annotator language="6502" implementationClass="us.hexcoder.asm6502.annotator.Asm6502LabelAnnotator" />
 		<annotator language="6502" implementationClass="us.hexcoder.asm6502.annotator.Asm6502DirectiveAnnotator" />
+		<annotator language="6502" implementationClass="us.hexcoder.asm6502.annotator.Asm6502MnemonicAnnotator" />
 	</extensions>
 </idea-plugin>

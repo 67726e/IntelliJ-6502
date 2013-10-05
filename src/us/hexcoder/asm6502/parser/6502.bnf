@@ -35,15 +35,24 @@ DirectiveCommand ::= DIRECTIVE
 		;
 
 
-MnemonicOperation ::= (MNEMONIC Operand?)
+MnemonicOperation ::= (MnemonicCommand Operand?)
+		;
+
+MnemonicCommand ::= MNEMONIC
 		;
 
 Operand ::= ACCUMULATOR_OPERAND
 		| LABEL_OPERAND
 		| OperandNumber
-		| OperandAddressRegister
+		| OperandZeroPageX
+		| OperandZeroPageY
+		| OperandZeroPage
+		| OperandImmediateX
+		| OperandAbsoluteY
+		| OperandIndirectX
+		| OperandIndirectY
 		| OperandIndirect
-		| ADDRESS_VALUE
+		| OperandAbsolute
 		;
 
 OperandNumber ::= BINARY_OPERAND
@@ -51,17 +60,31 @@ OperandNumber ::= BINARY_OPERAND
 		| HEXADECIMAL_OPERAND
 		;
 
-OperandAddressRegister ::= OperandAddressX
-		| OperandAddressY
+OperandZeroPage ::= ZERO_PAGE_VALUE
 		;
 
-OperandAddressX ::= ADDRESS_VALUE COMMA REGISTER_X
+OperandZeroPageX ::= ZERO_PAGE_VALUE COMMA REGISTER_X
 		;
 
-OperandAddressY ::= ADDRESS_VALUE COMMA REGISTER_Y
+OperandZeroPageY ::= ZERO_PAGE_VALUE COMMA REGISTER_Y
 		;
 
-OperandIndirect ::= OPEN_PAREN (OperandAddressRegister | ADDRESS_VALUE) CLOSE_PAREN
+OperandAbsolute ::= ABSOLUTE_VALUE
+		;
+
+OperandAbsoluteX ::= ABSOLUTE_VALUE COMMA REGISTER_X
+		;
+
+OperandAbsoluteY ::= ABSOLUTE_VALUE COMMA REGISTER_Y
+		;
+
+OperandIndirect ::= OPEN_PAREN OperandAbsolute CLOSE_PAREN
+		;
+
+OperandIndirectX ::= OPEN_PAREN OperandAbsoluteX CLOSE_PAREN
+		;
+
+OperandIndirectY ::= OPEN_PAREN OperandAbsoluteY CLOSE_PAREN
 		;
 
 DirectiveArgument ::= DirectiveString

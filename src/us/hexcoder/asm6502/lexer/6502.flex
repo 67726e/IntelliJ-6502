@@ -56,7 +56,8 @@ BINARY_OPERAND="#%"[0-1]+
 DECIMAL_OPERAND="#"[0-9]+
 HEXADECIMAL_OPERAND="#$"[0-9a-fA-F]+
 
-ADDRESS_VALUE="$"[0-9a-fA-F]+
+ZERO_PAGE_VALUE="$"[0-9a-fA-F]{1,2}
+ABSOLUTE_VALUE="$"[0-9a-fA-F]{1,4}
 
 BINARY_NUMBER="%"[0-1]+
 DECIMAL_NUMBER=[0-9]+
@@ -98,7 +99,8 @@ REGISTER_Y=[yY]
 	{DECIMAL_OPERAND} 					{ yybegin(YYINITIAL); return Asm6502Types.DECIMAL_OPERAND; }
 	{HEXADECIMAL_OPERAND} 				{ yybegin(YYINITIAL); return Asm6502Types.HEXADECIMAL_OPERAND; }
 
-	{ADDRESS_VALUE}						{ pushState(YYINITIAL); yybegin(ADDRESS); return Asm6502Types.ADDRESS_VALUE; }
+	{ZERO_PAGE_VALUE}					{ pushState(YYINITIAL); yybegin(ADDRESS); return Asm6502Types.ZERO_PAGE_VALUE; }
+	{ABSOLUTE_VALUE}					{ pushState(YYINITIAL); yybegin(ADDRESS); return Asm6502Types.ABSOLUTE_VALUE; }
 
 	{OPEN_PAREN}						{ yybegin(OPEN_PAREN); return Asm6502Types.OPEN_PAREN; }
 
@@ -107,7 +109,8 @@ REGISTER_Y=[yY]
 }
 
 <OPEN_PAREN> {
-	{ADDRESS_VALUE}						{ pushState(CLOSE_PAREN); yybegin(ADDRESS); return Asm6502Types.ADDRESS_VALUE; }
+	{ZERO_PAGE_VALUE}					{ pushState(CLOSE_PAREN); yybegin(ADDRESS); return Asm6502Types.ZERO_PAGE_VALUE; }
+	{ABSOLUTE_VALUE}					{ pushState(CLOSE_PAREN); yybegin(ADDRESS); return Asm6502Types.ABSOLUTE_VALUE; }
 
 	{WHITESPACE}+						{ return TokenType.WHITE_SPACE; }
 	.									{ yybegin(YYINITIAL); return TokenType.BAD_CHARACTER; }
