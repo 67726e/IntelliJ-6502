@@ -13,7 +13,7 @@ public enum Directive {
 	ADDRESS(".address", false, Asm6502Types.DIRECTIVE_NUMBER),
 	BYTE(".byte", false, Asm6502Types.DIRECTIVE_NUMBER),
 	INCLUDE(".include", false, Asm6502Types.DIRECTIVE_STRING),
-	INCLUDE_BIN(".includebin", false, Asm6502Types.DIRECTIVE_STRING),
+	INCLUDE_BINARY(".includebin", false, Asm6502Types.DIRECTIVE_STRING),
 	WORD(".word", false, Asm6502Types.DIRECTIVE_NUMBER);
 
 	private String text;
